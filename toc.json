@@ -50,7 +50,11 @@
         }
       ]
     },
-    
+    {
+      "type": "item",
+      "title": "Websocket access for Data Stream Analyzer",
+      "uri": "docs/Websocket-access-for-DSA.md"
+    },
     {
       "type": "divider",
       "title": "Resources"
