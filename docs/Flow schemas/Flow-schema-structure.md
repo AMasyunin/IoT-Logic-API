@@ -16,22 +16,22 @@ stoplight-id: cr4zu3e4l42hj
 
 3. **Edges**: Connect nodes together to define the flow of data
 
-## Node Types in Detail
+## Node types in detail
 
-### Data Source Node
+### Data Source node
 
 - Acts as the entry point for data from devices
 - Contains a list of source device IDs to monitor
 - Example use: Collect data from vehicle trackers, temperature sensors, etc.
 
-### Initiate Attributes Node
+### Initiate Attributes node
 
 - Processes data by creating or modifying attributes
 - Uses expressions to transform raw data into meaningful metrics
 - Can reference other attributes in calculations
 - Example use: Convert analog signals to meaningful metrics (fuel level, temperature)
 
-### Output Endpoint Node
+### Output Endpoint node
 
 - Defines the destination for processed data
 - Two main types:
@@ -44,7 +44,7 @@ stoplight-id: cr4zu3e4l42hj
 
 [Configured schema example](uGeneral-JSON-schema-example.mdrl)
 
-## Customization for Manufacturers
+## Customization for manufacturers
 
 This template can be customized for different manufacturers by:
 

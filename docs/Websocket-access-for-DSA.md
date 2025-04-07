@@ -3,6 +3,18 @@ stoplight-id: 09sx1g2wm5gw3
 ---
 
 # Websocket access to Data Stream Analyzer
+## Overview
+
+The **WebSocket** functionality provides real-time, event-driven access to device data. It enables you to subscribe to various event types—such as location updates, device state changes, and telemetry streams—without the need for continuous polling.
+
+WebSocket communication is ideal for applications that require immediate data delivery, such as monitoring dashboards, alert systems, or integrations that rely on timely IoT events.
+
+For more details, see [Navixy WebSocket API documentation](https://squaregps.stoplight.io/docs/navixy-api/2c02b575c8af8-web-socket-api)  
+This guide covers connection setup, authentication, event types, and message formats.
+
+The **`iot_monitor`** event stream is designed for **Data Stream Analyzer (DSA)** and delivers real-time telemetry from selected devices. It provides both the latest data and short-term history, allowing you to track attribute changes over time.
+
+This feature supports use cases like diagnostics, trend visualization, and alerting—where understanding recent attribute patterns is as important as receiving the newest values. Its structured format also helps you distinguish between missing and inactive data, improving clarity and reliability in IoT monitoring.
 
 ## The "iot_monitor" event subscription
 

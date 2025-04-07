@@ -2,9 +2,9 @@
 stoplight-id: n6jl7wc7cska8
 ---
 
-# Technical Details
+# Technical details
 
-## Flow Structure Validation
+## Flow structure validation
 
 When creating or updating flows, the API performs several validation checks:
 
@@ -14,7 +14,7 @@ When creating or updating flows, the API performs several validation checks:
 4. All nodes must be reachable from data sources
 5. All required fields must be present for each node type
 
-## Node Positioning
+## Node positioning
 
 The `view` property in nodes is used for visual representation in UI tools:
 
@@ -29,7 +29,7 @@ The `view` property in nodes is used for visual representation in UI tools:
 
 While optional for API functionality, including this data helps maintain visual layout when editing flows later.
 
-## Flow States
+## Flow states
 
 Flows can be in one of two states:
 - `enabled: true` - The flow is active and processing data
@@ -37,16 +37,16 @@ Flows can be in one of two states:
 
 Individual nodes can also be enabled or disabled, allowing for partial flow activation.
 
-## Endpoint Status Options
+## Endpoint status options
 
 Endpoints can have one of three status values:
 - `active` - The endpoint is operational
 - `suspend` - The endpoint is temporarily paused
 - `disabled` - The endpoint is disabled and cannot be used
 
-## Reference: Node Types
+## Reference: Node types
 
-### 1. Data Source Node (`data_source`)
+### 1. Data Source node (`data_source`)
 
 This node specifies which devices will send data to your flow. It's the entry point of all data flows.
 
@@ -65,16 +65,16 @@ This node specifies which devices will send data to your flow. It's the entry po
 }
 ```
 
-#### Key Points:
+#### Key points:
 - The `data_source` node type is required in every flow
 - Multiple devices can be specified in the `sources` array
 - Each device is identified by its numeric ID in the Navixy system
 - The `enabled` flag controls whether this node processes data
 - A flow can have multiple data source nodes for different device groups
 
-### 2. Data Processing Node (`initiate_attributes`)
+### 2. Initiate Attribute Node (`initiate_attributes`)
 
-This node transforms raw data into meaningful information. It allows for creating new attributes or modifying existing ones through expressions.
+This node transforms raw data into meaningful information. It allows for creating new data attributes or modifying existing ones through expressions.
 
 ```json
 {
@@ -106,9 +106,10 @@ This node transforms raw data into meaningful information. It allows for creatin
 | `generation_time` | When the data was generated | `"now()"` |
 | `server_time` | When the server received the data | `"now()"` |
 
-#### Expression Language:
+#### Expression language:
+IoT Logic uses [Navixy IoT Logic Expression Language](https://docs.navixy.com/iot-logic/navixy-iot-logic-expression-language).
 
-The expression language supports:
+The language supports:
 - Mathematical operators: `+`, `-`, `*`, `/`, `%`
 - Comparison operators: `>`, `<`, `>=`, `<=`, `==`, `!=`
 - Logical operators: `&&`, `||`, `!`
@@ -116,7 +117,7 @@ The expression language supports:
 - Functions: `now()`, `sqrt()`, `pow()`, `abs()`
 - References to device attributes: `speed`, `fuel_level`, `analog_1`, etc.
 
-#### Expression Examples:
+#### Expression examples:
 
 | Scenario | Expression |
 |----------|------------|
@@ -126,11 +127,12 @@ The expression language supports:
 | Distance calculation | `sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2))` |
 | Time-based condition | `hour(time) >= 22 || hour(time) <= 6 ? 'night' : 'day'` |
 
-### 3. Output Endpoint Node (`output_endpoint`)
+### 3. Output Endpoint node (`output_endpoint`)
 
 This node defines where your data will be sent. It's the termination point for data flow paths.
 
-#### Navixy Output:
+#### Default Endpoint:
+A standard, non-changeable configuration for a node that sends flow's data to Navixy platform.
 
 ```json
 {
@@ -147,7 +149,8 @@ This node defines where your data will be sent. It's the termination point for d
 }
 ```
 
-#### MQTT Output:
+#### MQTT output:
+A custom endpoint so send flow's data to a 3rd-party destination using MQTT as ransport protocol.
 
 ```json
 {
@@ -165,14 +168,14 @@ This node defines where your data will be sent. It's the termination point for d
 }
 ```
 
-#### Key Points:
+#### Key points:
 - Every flow must have at least one output endpoint node
 - The `output_navixy` type doesn't require a referenced endpoint (built-in)
 - The `output_mqtt_client` type requires an `output_endpoint_id` referencing a previously created endpoint
 - Multiple output nodes can be used to send the same data to different destinations
 - Output nodes are "terminal" - they don't connect to any downstream nodes
 
-## Reference: Endpoint Types and Properties
+## Reference: endpoint types and properties
 
 The API supports different endpoint types, each with specific properties.
 
@@ -184,7 +187,7 @@ The API supports different endpoint types, each with specific properties.
 | `output_navixy` | Default output to Navixy platform | Sending processed data back to Navixy |
 | `output_mqtt_client` | External MQTT broker connection | Integrating with third-party systems |
 
-### MQTT Endpoint Properties
+### MQTT endpoint properties
 
 The following properties are available when creating MQTT endpoints:
 
@@ -202,7 +205,7 @@ The following properties are available when creating MQTT endpoints:
 | `user_name` | MQTT username | Only if `mqtt_auth: true` | `"mqtt_user"` |
 | `user_password` | MQTT password | Only if `mqtt_auth: true` | `"mqtt_password"` |
 
-### MQTT QoS Levels
+### MQTT QoS levels
 
 The API supports MQTT QoS (Quality of Service) levels:
 
@@ -210,22 +213,22 @@ The API supports MQTT QoS (Quality of Service) levels:
 - **QoS 1**: "At least once" delivery (acknowledged delivery)
 - **QoS 2**: Not currently supported by the API
 
-### MQTT Protocol Versions
+### MQTT protocol versions
 
 Two MQTT protocol versions are supported:
 
 - **MQTT 3.1.1**: Widely supported version
 - **MQTT 5.0**: Newer version with enhanced features
 
-## Best Practices
+## Best practices
 
-### Flow Design
+### Flow design
 
 1. **Plan your flow design** before implementation
 2. **Create endpoints first** before referencing them in flows
 3. **Use descriptive titles** for both flows and nodes
 4. **Test incrementally** by adding one component at a time
-5. **Monitor data flow** after implementation to ensure it's working correctly
+5. **Monitor data flow** using [Websocket access to Data Stream Analyzer](Websocket-access-for-DSA.md) after implementation to ensure it's working correctly
 
 ### Data Processing
 
@@ -270,16 +273,6 @@ Error responses follow this format:
   }
 }
 ```
-
-## Data Security Considerations
-
-When working with the Navixy IoT Gateway API:
-
-1. **API Keys**: Protect your API keys as they provide full access to your account
-2. **MQTT Credentials**: Use strong passwords for MQTT authentication
-3. **SSL**: Enable SSL (`use_ssl: true`) for MQTT connections whenever possible
-4. **Data Privacy**: Be mindful of what device data you transmit to external systems
-5. **Endpoint Security**: Regularly audit your endpoints and disable unused ones
 
 ## Troubleshooting
 

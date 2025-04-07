@@ -2,11 +2,11 @@
 stoplight-id: v3pj5ugo604ke
 ---
 
-# Sending device data to an external MQTT system
+# Sending device data to an external system
 
-Let's create a complete workflow to send your device data to an external MQTT broker.
+Let's create a complete workflow to send your device data to an external destination using MQTT as transport protocol.
 
-## Step 1: Create an MQTT Endpoint
+## Step 1: Create an Output endpoint
 
 First, we need to define where the data will be sent:
 
