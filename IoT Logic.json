@@ -7,7 +7,7 @@
     "version": "1.0.0",
     "title": "Navixy IoT Logic API",
     "summary": "API calls for Flow and Node management",
-    "description": "This is an API reference for calls for Flow and Node management",
+    "description": "This is an API reference for calls for Flow and Node management\r\n<!-- theme: warning -->\r\n> *BETA Version!* <br>\r\n>Now the easrly access of IoT Logic's API is implemented, which means possible changes in the near future. Feel free to try the functionality, however, you may need to introduce changes in your applications reflecting the API functionality updates. Stay tuned! ",
     "contact": {
       "name": "Navixy support",
       "email": "support@navixy.com",
