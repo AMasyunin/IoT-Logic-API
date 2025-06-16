@@ -2,7 +2,6 @@
 
 * [Navixy IoT Logic API](README.md)
 * [Technical details](Technical-details.md)
-* [Websocket access to Data Stream Analyzer](Websocket-access-for-DSA.md)
 * [Flow schemas](flow-schemas/README.md)
   * [Flow schema structure](<Flow schemas/Flow-schema-structure.md>)
   * [JSON-schema template](<Flow schemas/General-JSON-schema-example.md>)
@@ -10,6 +9,7 @@
   * [Sending device data to an external system](navixy-iot-guide/scenario1.md)
   * [Managing your flows and endpoints](navixy-iot-guide/scenario2.md)
   * [Advanced configurations](navixy-iot-guide/advanced-configurations.md)
+* [Websocket access to Data Stream Analyzer](Websocket-access-for-DSA.md)
 
 ## Resources
 
