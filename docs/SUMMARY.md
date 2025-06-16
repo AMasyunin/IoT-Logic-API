@@ -6,11 +6,10 @@
 * [Flow schemas](flow-schemas/README.md)
   * [Flow schema structure](<Flow schemas/Flow-schema-structure.md>)
   * [JSON-schema template](<Flow schemas/General-JSON-schema-example.md>)
-* [Guides](guides/README.md)
-  * [Advanced configurations](Guides/Advanced-configurations.md)
-  * [Guides](Guides/navixy-iot-guide.md)
-  * [Sending device data to an external system](Guides/scenario1.md)
-  * [Managing your flows and endpoints](Guides/scenario2.md)
+* [Guides](navixy-iot-guide/README.md)
+  * [Sending device data to an external system](navixy-iot-guide/scenario1.md)
+  * [Managing your flows and endpoints](navixy-iot-guide/scenario2.md)
+  * [Advanced configurations](navixy-iot-guide/advanced-configurations.md)
 
 ## Resources
 
